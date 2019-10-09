@@ -7,7 +7,7 @@ class Restaurant(models.Model):
     opening_time = models.TimeField()
     closing_time = models.TimeField()
     logo = models.ImageField(upload_to='restaurant_logos', null=True, blank=True)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
     	return self.name

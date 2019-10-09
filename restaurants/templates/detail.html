@@ -27,12 +27,19 @@
         </div>
     </div>
   </div>
-</div>
-  <div class="row">
-    <ul>
-    {% for item in items %}
-      <li>Item: {{ item.name }}<br>Description: {{ item.description }}<br>Price: {{ item.price }}</li>
-    {% endfor %}
-    </ul>
+    <div class="card-body">
+      <ul class="list-group">
+        <li class="list-group-item active">Restaurant Item List</li>
+      {% for item in items %}
+        <a href="#" class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ item.name }}</h5>
+            <small class="text-muted">KWD {{ item.price }}</small>
+          </div>
+          <p class="mb-1">{{ item.description }}</p>
+        </a>
+      {% endfor %}
+      </ul>
   </div>
+</div>
 {% endblock content %}
