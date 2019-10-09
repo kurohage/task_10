@@ -5,7 +5,9 @@ from django.contrib.auth.models import User
 class RestaurantForm(forms.ModelForm):
     class Meta:
         model = Restaurant
-        fields = ['name', 'description', 'opening_time', 'closing_time', 'logo']
+        #fields = ['name', 'description', 'opening_time', 'closing_time', 'logo']
+        # the owner is passed by django automatically and no one should be able to add restaurant objects to other users
+        exclude = ['owner']
 
         widgets = {
         	'opening_time': forms.TimeInput(attrs={'type':'time'}),

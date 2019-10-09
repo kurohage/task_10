@@ -73,16 +73,18 @@ def restaurant_create(request):
 
 def item_create(request, restaurant_id):
     form = ItemForm()
+    restaurant = Restaurant.objects.get(id=restaurant_id)
     if request.method == "POST":
         form = ItemForm(request.POST)
         if form.is_valid():
             item = form.save(commit=False)
-            item.restaurant = Restaurant.objects.get(id=restaurant_id)
+            item.restaurant = restaurant
             item.save()
 
-            return redirect('restaurant-detail', restaurant_id=restaurant_id)
+            return redirect('restaurant-detail', kwargs={"restaurant_id":restaurant_id})
     context = {
-        "form": form
+        "form": form,
+        "restaurant": restaurant
     }
     return render(request, 'item_create.html', context)
 
